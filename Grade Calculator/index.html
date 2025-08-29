@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Human Computer Interface: CMPS3141 Grade Calculator</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="index.js" defer></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Human Computer Interface: CMPS3141</h1>
+    <h2>Grade Calculator</h2>
+
+    <!-- Tests -->
+    <div>
+      <h3>Tests (10% each)</h3>
+      <label>Test 1: <input type="number" v-model.number="test1" min="0" max="100"></label><br>
+      <label>Test 2: <input type="number" v-model.number="test2" min="0" max="100"></label>
+    </div>
+
+    <!-- Homework -->
+    <div>
+      <h3>Homeworks (5% each)</h3>
+      <div v-for="(hw, index) in homeworks" :key="index">
+        <label>Homework {{ index+1 }}: 
+          <input type="number" v-model.number="homeworks[index]" min="0" max="100">
+        </label>
+      </div>
+      <button @click="addHomework">Add Homework</button>
+    </div>
+
+    <!-- Project -->
+    <div>
+      <h3>Project (25%)</h3>
+      <label>Project Grade: <input type="number" v-model.number="project" min="0" max="100"></label>
+    </div>
+
+    <!-- Final Exam -->
+    <div>
+      <h3>Final Exam (25%)</h3>
+      <label>Final Exam Grade: <input type="number" v-model.number="finalExam" min="0" max="100"></label>
+    </div>
+
+    <!-- Output -->
+    <div>
+      <h2>Projected Grade</h2>
+      <p v-if="calculatedGrade !== null">
+        Numeric Grade: {{ calculatedGrade.toFixed(2) }}% <br>
+        Letter Grade: {{ letterGrade }}
+      </p>
+    </div>
+  </div>
+</body>
+</html>
