@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <header>
+        <h1>Roommate Expense Tracker</h1>
+    <p>A simple wireframe showing shared expenses, balances, and settlement actions.</p>
+    <nav>
+      <button type="button">Dashboard</button>
+      <button type="button">Expenses</button>
+      <button type="button">Roommates</button>
+      <button type="button">Reports</button>
+    </nav>
+  </header>
+
+  <main>
+    <section aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Current Summary</h2>
+      <img src="https://via.placeholder.com/320x120?text=Chart+Placeholder" alt="Placeholder for balance chart">
+      <ul>
+        <li>Total pooled expenses this month: <strong>$1,200.00</strong></li>
+        <li>Average per person: <strong>$600.00</strong></li>
+      </ul>
+
+      <label for="month-select">Timeframe:</label>
+      <select id="month-select">
+        <option>August 2025</option>
+        <option selected>July 2025</option>
+        <option>June 2025</option>
+        <option>All time</option>
+      </select>
+
+      <label for="split-method">Default split method:</label>
+      <select id="split-method">
+        <option selected>Even split</option>
+        <option>By share (%)</option>
+        <option>By usage</option>
+      </select>
+    </section>
+
+    <section aria-labelledby="roommates-heading">
+      <h2 id="roommates-heading">Roommates & Balances</h2>
+
+      <table border="1" summary="List of roommates and their current balances">
+        <thead>
+          <tr>
+            <th>Avatar</th>
+            <th>Name</th>
+            <th>Share (%)</th>
+            <th>Paid</th>
+            <th>Owes / Is owed</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="" alt="Neo avatar"></td>
+            <td>Neo</td>
+            <td><input type="number" value="50" min="0" max="100">%</td>
+            <td>$700.00</td>
+            <td><strong>+ $100.00</strong> (is owed)</td>
+            <td>
+              <button type="button">Settle up</button>
+              <button type="button">Edit</button>
+            </td>
+          </tr>
+          <tr>
+            <td><img src="" alt="Trinity avatar"></td>
+            <td>Trinity</td>
+            <td><input type="number" value="50" min="0" max="100">%</td>
+            <td>$500.00</td>
+            <td><strong>- $100.00</strong> (owes)</td>
+            <td>
+              <button type="button">Settle up</button>
+              <button type="button">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Net balances are automatically calculated from listed expenses below.</p>
+    </section>
+    <section aria-labelledby="expenses-heading">
+      <h2 id="expenses-heading">Expenses</h2>
+      <label for="search-expenses">Search expenses:</label>
+      <input id="search-expenses" type="search" value="July rent">
+
+      <label for="show-filter">Show:</label>
+      <select id="show-filter">
+        <option>All</option>
+        <option>Paid by me</option>
+        <option selected>Unsettled</option>
+      </select>
+
+      <table border="1" summary="List of shared expenses">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Paid by</th>
+            <th>Split</th>
+            <th>Settled</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-07-01</td>
+            <td>July Rent</td>
+            <td>$1,000.00</td>
+            <td>Neo</td>
+            <td>Even</td>
+            <td>No</td>
+            <td>Paid on time via bank transfer</td>
+            <td><button type="button">Mark settled</button></td>
+          </tr>
+          <tr>
+            <td>2025-07-10</td>
+            <td>Groceries</td>
+            <td>$200.00</td>
+            <td>Trinity</td>
+            <td>Even</td>
+            <td>No</td>
+            <td>Shared: bread, milk, fruit</td>
+            <td><button type="button">Split</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </section>
+    <section aria-labelledby="add-expense-heading">
+      <h2 id="add-expense-heading">Add an expense</h2>
+      <form>
+        <label for="expense-date">Date</label>
+        <input id="expense-date" type="date" value="2025-07-01">
+
+        <label for="expense-desc">Description</label>
+        <input id="expense-desc" type="text" value="July Rent">
+
+        <label for="expense-amount">Amount</label>
+        <input id="expense-amount" type="number" value="1000" step="0.01"> USD
+
+        <label for="expense-payer">Paid by</label>
+        <select id="expense-payer">
+          <option selected>Neo</option>
+          <option>Trinity</option>
+        </select>
+
+        <fieldset>
+          <legend>Split method</legend>
+          <label><input type="radio" name="split" value="even" checked> Even split</label>
+          <label><input type="radio" name="split" value="byshare"> By share (%)</label>
+          <label><input type="radio" name="split" value="custom"> Custom</label>
+        </fieldset>
+
+        <label for="expense-notes">Notes</label>
+        <textarea id="expense-notes">Paid via bank transfer on 2025-07-01</textarea>
+
+        <button type="button">Add expense</button>
+        <button type="reset">Clear</button>
+      </form>
+    </section>
+    <section aria-labelledby="settle-heading">
+      <h2 id="settle-heading">Quick settle</h2>
+      <p>Suggested minimal transactions to settle balances:</p>
+      <ol>
+        <li>Trinity pays Neo <strong>$100.00</strong></li>
+      </ol>
+      <button type="button">Generate settlement payments</button>
+    </section>
+
+    <section aria-labelledby="export-heading">
+      <h2 id="export-heading">Export & Reports</h2>
+      <label for="export-format">Export format</label>
+      <select id="export-format">
+        <option>CSV</option>
+        <option>PDF</option>
+        <option selected>CSV + PDF</option>
+      </select>
+      <button type="button">Export</button>
+
+      <h3>Monthly breakdown</h3>
+      <table border="1">
+        <thead>
+          <tr><th>Month</th><th>Total</th><th>Top payer</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>July 2025</td><td>$1,200.00</td><td>Neo ($700.00)</td></tr>
+          <tr><td>June 2025</td><td>$1,000.00</td><td>Trinity ($600.00)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</body>
+</html>
